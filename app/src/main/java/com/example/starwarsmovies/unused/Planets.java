@@ -1,4 +1,4 @@
-package com.example.starwarsmovies.models;
+package com.example.starwarsmovies.unused;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,10 +1,10 @@
-package com.example.starwarsmovies.home;
+package com.example.starwarsmovies.starwarsMovies;
 
 import com.example.starwarsmovies.models.Films;
 
 import java.util.ArrayList;
 
-public interface HomeContract {
+public interface MainContract {
 
     interface HomeView{
         void showLoading();

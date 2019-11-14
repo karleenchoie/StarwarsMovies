@@ -1,4 +1,4 @@
-package com.example.starwarsmovies.home;
+package com.example.starwarsmovies.starwarsMovies;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,54 +11,61 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.starwarsmovies.R;
-import com.example.starwarsmovies.film.FilmActivity;
-import com.example.starwarsmovies.film.FilmAdapter;
-import com.example.starwarsmovies.home.HomeContract;
-import com.example.starwarsmovies.home.HomePresenter;
+import com.example.starwarsmovies.filmDetails.FilmsActivity;
 import com.example.starwarsmovies.models.Films;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements HomeContract.HomeView{
+
+
+//    ACTIVITY FOR DISPLAYING ALL STAR WARS MOVIES
+
+public class MainActivity extends AppCompatActivity implements MainContract.HomeView{
     private static final String TAG = "MainActivity";
 
-    SwipeRefreshLayout swipeRefreshLayout;
-    RecyclerView recyclerView;
-    FilmAdapter adapter;
-    HomePresenter presenter;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    RecyclerView mRecyclerView;
+    RecyclerViewAdapter mRecyclerViewAdapter;
+    MainPresenter mMainPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-        adapter = new FilmAdapter(null, new FilmAdapter.OnFilmItemClickListener() {
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+
+        mRecyclerViewAdapter = new RecyclerViewAdapter(null, new RecyclerViewAdapter.OnFilmItemClickListener() {
             @Override
             public void onFilmClick(Films film) {
                 Log.i(TAG, "onFilmClick: " + film.getEpisode_id());
-                presenter.onFilmItemClicked(film);
+                mMainPresenter.onFilmItemClicked(film);
             }
         });
-        recyclerView.setAdapter(adapter);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.getAllFilms();
+                mMainPresenter.getAllFilms();
             }
         });
-        presenter = new HomePresenter(this);
-        presenter.getAllFilms();
+        mMainPresenter = new MainPresenter(this);
+        mMainPresenter.getAllFilms();
     }
 
     @Override
     public void showLoading() {
-        swipeRefreshLayout.setRefreshing(true);
+        mSwipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public void hideLoading() {
-        swipeRefreshLayout.setRefreshing(false);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -71,25 +78,20 @@ public class MainActivity extends AppCompatActivity implements HomeContract.Home
         setTitle(title);
     }
 
-
-
     @Override
     public void showAllFilms(ArrayList<Films> films) {
         Log.i(TAG, "showAllFilms: " + films.size());
-        adapter.setFilms(films);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        mRecyclerViewAdapter.setFilms(films);
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
+        mRecyclerViewAdapter.notifyDataSetChanged();
     }
-
 
     @Override
     public void navigateToFilmPage(Films film) {
-        Intent intent = new Intent(this, FilmActivity.class);
+        Intent intent = new Intent(this, FilmsActivity.class);
         intent.putExtra("EpisodeId",film.getEpisode_id());
         Log.i(TAG, "navigateToFilmPage: " + film.getEpisode_id());
         startActivity(intent);
     }
-
-
 }
 

@@ -1,9 +1,10 @@
-package com.example.starwarsmovies.film;
+package com.example.starwarsmovies.starwarsMovies;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.starwarsmovies.R;
@@ -15,12 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static android.content.ContentValues.TAG;
 
-public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder> {
+//RecyclerView Adapter for displaying All films
+
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.FilmViewHolder> {
 
     private ArrayList<Films> films;
     private OnFilmItemClickListener onFilmItemClickListener;
 
-    public FilmAdapter(ArrayList<Films> films, OnFilmItemClickListener onFilmItemClickListener)
+    public RecyclerViewAdapter(ArrayList<Films> films, OnFilmItemClickListener onFilmItemClickListener)
     {
         this.films  = films;
         this.onFilmItemClickListener = onFilmItemClickListener;
@@ -28,14 +31,16 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
 
     @Override
     public FilmViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_film_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.film_items,parent,false);
         return new FilmViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(FilmViewHolder holder, final int position) {
-        holder.title.setText(films.get(position).getTitle() + films.get(position).getEpisode_id());
-        holder.title.setOnClickListener(new View.OnClickListener() {
+        holder.filmtitle.setText(films.get(position).getTitle());
+        holder.filmDirector.setText("Directed by: " + films.get(position).getDirector());
+        holder.filmrRelease.setText(films.get(position).getRelease_date());
+        holder.filmRelative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "onClick: " + films.get(position).getTitle() + " Clicked");
@@ -58,12 +63,17 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
         this.films = films;
     }
 
-    class FilmViewHolder extends RecyclerView.ViewHolder {
+    public class FilmViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title;
-        FilmViewHolder(View itemView) {
+        RelativeLayout filmRelative;
+        TextView filmtitle, filmDirector, filmrRelease;
+
+        public FilmViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.title);
+            filmRelative = (RelativeLayout) itemView.findViewById(R.id.relFilmList);
+            filmtitle = (TextView) itemView.findViewById(R.id.txtFilmTitle);
+            filmDirector = (TextView) itemView.findViewById(R.id.txtFilmDirector);
+            filmrRelease = (TextView) itemView.findViewById(R.id.txtFilmRelease);
         }
     }
 

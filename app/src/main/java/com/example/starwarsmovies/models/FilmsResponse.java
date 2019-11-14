@@ -3,6 +3,7 @@ package com.example.starwarsmovies.models;
 import java.util.List;
 
 public class FilmsResponse {
+
     private List<Films> results;
 
     public List<Films> getResults() {

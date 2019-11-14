@@ -1,10 +1,10 @@
-package com.example.starwarsmovies.unused;
+package com.example.starwarsmovies.models;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class Starship {
+public class Vehicles {
 
     @SerializedName("name")
     public String name;
@@ -36,14 +36,8 @@ public class Starship {
     @SerializedName("consumables")
     public String consumables;
 
-    @SerializedName("hyperdrive_rating")
-    public String hyperdrive_rating;
-
-    @SerializedName("MGLT")
-    public String MGLT;
-
-    @SerializedName("starship_class")
-    public String starship_class;
+    @SerializedName("vehicle_class")
+    public String vehicle_class;
 
     @SerializedName("pilots")
     public ArrayList<String> pilots;
@@ -60,7 +54,7 @@ public class Starship {
     @SerializedName("url")
     public String url;
 
-    public Starship(String name, String model, String manufacturer, String cost_in_credits, String length, String max_atmosphering_speed, String crew, String passengers, String cargo_capacity, String consumables, String hyperdrive_rating, String MGLT, String starship_class, ArrayList<String> pilots, ArrayList<String> films, String created, String edited, String url) {
+    public Vehicles(String name, String model, String manufacturer, String cost_in_credits, String length, String max_atmosphering_speed, String crew, String passengers, String cargo_capacity, String consumables, String vehicle_class, ArrayList<String> pilots, ArrayList<String> films, String created, String edited, String url) {
         this.name = name;
         this.model = model;
         this.manufacturer = manufacturer;
@@ -71,9 +65,7 @@ public class Starship {
         this.passengers = passengers;
         this.cargo_capacity = cargo_capacity;
         this.consumables = consumables;
-        this.hyperdrive_rating = hyperdrive_rating;
-        this.MGLT = MGLT;
-        this.starship_class = starship_class;
+        this.vehicle_class = vehicle_class;
         this.pilots = pilots;
         this.films = films;
         this.created = created;
@@ -161,28 +153,12 @@ public class Starship {
         this.consumables = consumables;
     }
 
-    public String getHyperdrive_rating() {
-        return hyperdrive_rating;
+    public String getVehicle_class() {
+        return vehicle_class;
     }
 
-    public void setHyperdrive_rating(String hyperdrive_rating) {
-        this.hyperdrive_rating = hyperdrive_rating;
-    }
-
-    public String getMGLT() {
-        return MGLT;
-    }
-
-    public void setMGLT(String MGLT) {
-        this.MGLT = MGLT;
-    }
-
-    public String getStarship_class() {
-        return starship_class;
-    }
-
-    public void setStarship_class(String starship_class) {
-        this.starship_class = starship_class;
+    public void setVehicle_class(String vehicle_class) {
+        this.vehicle_class = vehicle_class;
     }
 
     public ArrayList<String> getPilots() {
@@ -227,7 +203,7 @@ public class Starship {
 
     @Override
     public String toString() {
-        return "Starship{" +
+        return "Vehicles{" +
                 "name='" + name + '\'' +
                 ", model='" + model + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +
@@ -238,9 +214,7 @@ public class Starship {
                 ", passengers='" + passengers + '\'' +
                 ", cargo_capacity='" + cargo_capacity + '\'' +
                 ", consumables='" + consumables + '\'' +
-                ", hyperdrive_rating='" + hyperdrive_rating + '\'' +
-                ", MGLT='" + MGLT + '\'' +
-                ", starship_class='" + starship_class + '\'' +
+                ", vehicle_class='" + vehicle_class + '\'' +
                 ", pilots=" + pilots +
                 ", films=" + films +
                 ", created='" + created + '\'' +

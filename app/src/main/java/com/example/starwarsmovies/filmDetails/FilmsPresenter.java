@@ -1,4 +1,4 @@
-package com.example.starwarsmovies.film;
+package com.example.starwarsmovies.filmDetails;
 
 import android.util.Log;
 
@@ -12,12 +12,12 @@ import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
 
-public class FilmPresenter implements FilmContract.FilmPresenter {
+public class FilmsPresenter implements FilmsContract.FilmPresenter {
     int id;
-    FilmContract.FilmView view;
+    FilmsContract.FilmView view;
     ApiInterface api;
 
-    FilmPresenter(int id,FilmContract.FilmView view)
+    FilmsPresenter(int id, FilmsContract.FilmView view)
     {
         this.id = id;
         this.view = view;
@@ -31,9 +31,10 @@ public class FilmPresenter implements FilmContract.FilmPresenter {
             @Override
             public void onResponse(Call<Films> call, Response<Films> response) {
                 Films film =  response.body();
+
                 view.showTitle(film.getTitle());
+                view.showDirector(film.getDirector());
                 view.showReleaseDate(film.getRelease_date());
-                view.showMessage("Film Loaded!");
                 view.hideLoading();
             }
 

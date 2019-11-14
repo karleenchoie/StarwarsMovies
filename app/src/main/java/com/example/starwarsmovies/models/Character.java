@@ -1,10 +1,10 @@
-package com.example.starwarsmovies.unused;
+package com.example.starwarsmovies.models;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class People {
+public class Character {
 
     @SerializedName("name")
     public String name;
@@ -54,7 +54,7 @@ public class People {
     @SerializedName("url")
     public String url;
 
-    public People(String name, String height, String mass, String hair_color, String skin_color, String eye_color, String birth_year, String gender, String homeworld, ArrayList<String> films, ArrayList<String> species, ArrayList<String> vehicles, ArrayList<String> starships, String created, String edited, String url) {
+    public Character(String name, String height, String mass, String hair_color, String skin_color, String eye_color, String birth_year, String gender, String homeworld, ArrayList<String> films, ArrayList<String> species, ArrayList<String> vehicles, ArrayList<String> starships, String created, String edited, String url) {
         this.name = name;
         this.height = height;
         this.mass = mass;
@@ -203,7 +203,7 @@ public class People {
 
     @Override
     public String toString() {
-        return "People{" +
+        return "Character{" +
                 "name='" + name + '\'' +
                 ", height='" + height + '\'' +
                 ", mass='" + mass + '\'' +

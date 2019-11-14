@@ -1,4 +1,4 @@
-package com.example.starwarsmovies.home;
+package com.example.starwarsmovies.starwarsMovies;
 
 import android.util.Log;
 
@@ -15,17 +15,17 @@ import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
 
-public class HomePresenter implements HomeContract.HomePresenter {
+public class MainPresenter implements MainContract.HomePresenter {
 
 
-    private HomeContract.HomeView view;
+    private MainContract.HomeView view;
     private ApiInterface api;
 
-    public HomePresenter(HomeContract.HomeView view)
+    public MainPresenter(MainContract.HomeView view)
     {
         this.view  = view;
         api = ApiClient.getStarWarsApi();
-        view.showTitle("All Star Wars Film");
+        view.showTitle("Starwars Films");
     }
 
 

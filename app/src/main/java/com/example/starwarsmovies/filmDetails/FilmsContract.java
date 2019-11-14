@@ -1,22 +1,23 @@
-package com.example.starwarsmovies.film;
+package com.example.starwarsmovies.filmDetails;
 
-public interface FilmContract {
-    interface FilmPresenter{
-
-        void getFilm();
-
-
-    }
+public interface FilmsContract {
     interface FilmView{
+
         void showLoading();
 
         void hideLoading();
 
         void showMessage(String message);
 
+        void showDirector(String director);
+
         void showTitle(String title);
 
         void showReleaseDate(String releaseDate);
+    }
 
+    interface FilmPresenter{
+
+        void getFilm();
     }
 }
